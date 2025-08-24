@@ -1,6 +1,5 @@
 import numpy as np
 import sys
-import time
 from sklearn.metrics import pairwise_distances
 
 # Usage: python3 sklearn_farthest_pair.py num_points
@@ -26,17 +25,14 @@ train_images = read_images("train-images-idx3-ubyte", 60000)
 # Truncate to selected number of points
 subset = train_images[:num_points]
 
-# Time the pairwise distance + argmax
-start = time.time()
+# pairwise distance + argmax
 dists = pairwise_distances(subset, subset, metric='euclidean')
 flat_index = np.argmax(dists)
 i = flat_index // num_points
 j = flat_index % num_points
 max_dist = dists[i, j]
-elapsed = time.time() - start
 
 # Print result
 print(f"Used {num_points} images")
-print(f"Elapsed time = {elapsed:.4f} seconds")
 print(f"Max distance = {max_dist:.2f}")
 print(f"Farthest pair: ({i}, {j})")
