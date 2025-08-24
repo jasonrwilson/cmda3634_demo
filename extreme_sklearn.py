@@ -30,7 +30,7 @@ subset = train_images[:num_points]
 start = time.time()
 dists = pairwise_distances(subset, subset, metric='euclidean')
 flat_index = np.argmax(dists)
-i = flat_index / num_points
+i = flat_index // num_points
 j = flat_index % num_points
 max_dist = dists[i, j]
 elapsed = time.time() - start
