@@ -1,6 +1,5 @@
 import sys
 import numpy as np
-import gzip
 import time # to time part of the code
 
 # make sure a command line argument for the number of test images is provided
@@ -11,27 +10,27 @@ num_test = int(sys.argv[1])
 print ('number of digits to classify =',num_test)
 
 # Opens MNIST training image set and stores it as a 60000 x 784 matrix
-f = gzip.open('train-images-idx3-ubyte.gz','r')
+f = open('train-images-idx3-ubyte','rb')
 f.read(16) # skip file header
 buf = f.read(60000*28*28)
 data = np.frombuffer(buf,dtype=np.uint8)
 train = data.reshape(60000,28*28).astype(np.int32)
 
 # Opening and saving the 60000 training labels
-f = gzip.open('train-labels-idx1-ubyte.gz','r')
+f = open('train-labels-idx1-ubyte','rb')
 f.read(8) #skip header
 buf = f.read(60000)
 train_labels = np.frombuffer(buf,dtype=np.uint8)
 
 # Opens MNIST test image set and stores it as a 10000 x 784 matrix
-f = gzip.open('t10k-images-idx3-ubyte.gz','r')
+f = open('t10k-images-idx3-ubyte','rb')
 f.read(16) # skip header
 buf = f.read(10000*28*28)
 data = np.frombuffer(buf, dtype=np.uint8)
 test = data.reshape(10000,28*28).astype(np.int32)
 
 # Opening and saving the 10000 test labels
-f = gzip.open('t10k-labels-idx1-ubyte.gz','r')
+f = open('t10k-labels-idx1-ubyte','rb')
 f.read(8) #skip header
 buf = f.read(10000)
 test_labels = np.frombuffer(buf,dtype=np.uint8)
