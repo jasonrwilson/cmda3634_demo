@@ -80,7 +80,7 @@ int main (int argc, char** argv) {
     double elapsed = (double)(stop-start)/CLOCKS_PER_SEC;
 
     // print results
-    printf ("number of images = %d\n",len);
+    printf ("number of points = %d\n",num_points);
     printf ("elapsed time = %.4f seconds\n",elapsed);
     printf ("extreme distance = %.2f\n",sqrt(info.max_dist_sq));
     printf ("extreme pair = (%d,%d)\n",info.i,info.j);
