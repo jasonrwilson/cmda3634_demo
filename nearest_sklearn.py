@@ -23,9 +23,7 @@ def read_labels(filename, num_labels):
     with open(filename, 'rb') as f:
         f.read(8)  # skip header
         return np.frombuffer(f.read(num_labels), dtype=np.uint8)
-
-start = time.time()
-
+        
 # Load data
 train_images = read_images('train-images-idx3-ubyte', 60000)
 train_labels = read_labels('train-labels-idx1-ubyte', 60000)
@@ -36,8 +34,10 @@ test_labels = read_labels('t10k-labels-idx1-ubyte', 10000)
 test_images = test_images[:num_test]
 test_labels = test_labels[:num_test]
 
+start = time.time()
+
 # Build and evaluate KNN model
-model = KNeighborsClassifier(n_neighbors=1, algorithm='brute', n_jobs=-1)
+model = KNeighborsClassifier(n_neighbors=1, algorithm='brute', n_jobs=1)
 model.fit(train_images, train_labels)
 predicted = model.predict(test_images)
 elapsed = time.time() - start
