@@ -43,6 +43,11 @@ int vec_dist_sq(byte* u, byte* v, int dim) {
 
 int main (int argc, char** argv) {
 
+	if (argc < 2) {
+		printf ("usage: %s num_points\n",argv[0]);
+	}
+	int num_points = atoi(argv[1]);
+	
     // read in a MNIST image set
     int len = 60000;
     int dim = 784;
@@ -50,13 +55,17 @@ int main (int argc, char** argv) {
     char images_file[] = "train-images-idx3-ubyte";
     read_bin(data,len*dim,images_file,16);
 
+	if ((num_points < 0) || num_points > len)) {
+		num_points = len;
+	}
+
     // start the timer
     clock_t start = clock();
 
     // find the extreme pair
     extreme_info info = { 0, -1, -1 };
-    for (int i=0;i<len-1;i++) {
-	    for (int j=i+1;j<len;j++) {
+    for (int i=0;i<num_points-1;i++) {
+	    for (int j=i+1;j<num_points;j++) {
 	        int dist_sq = vec_dist_sq(data+i*dim,data+j*dim,dim);
 	        if (dist_sq > info.max_dist_sq) {
 		        info.max_dist_sq = dist_sq;
