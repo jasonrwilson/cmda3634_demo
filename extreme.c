@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-#include <time.h>
 
 typedef unsigned char byte;
 
@@ -59,9 +58,6 @@ int main (int argc, char** argv) {
 		num_points = len;
 	}
 
-    // start the timer
-    clock_t start = clock();
-
     // find the extreme pair
     extreme_info info = { 0, -1, -1 };
     for (int i=0;i<num_points-1;i++) {
@@ -75,13 +71,8 @@ int main (int argc, char** argv) {
 	    }
     }
 
-    // stop the timer
-    clock_t stop = clock();
-    double elapsed = (double)(stop-start)/CLOCKS_PER_SEC;
-
     // print results
     printf ("number of points = %d\n",num_points);
-    printf ("elapsed time = %.4f seconds\n",elapsed);
     printf ("extreme distance = %.2f\n",sqrt(info.max_dist_sq));
     printf ("extreme pair = (%d,%d)\n",info.i,info.j);
 
