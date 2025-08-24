@@ -55,7 +55,7 @@ int main (int argc, char** argv) {
     char images_file[] = "train-images-idx3-ubyte";
     read_bin(data,len*dim,images_file,16);
 
-	if ((num_points < 0) || num_points > len)) {
+	if ((num_points < 0) || (num_points > len)) {
 		num_points = len;
 	}
 
