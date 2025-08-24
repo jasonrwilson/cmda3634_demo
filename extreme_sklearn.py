@@ -28,7 +28,7 @@ subset = train_images[:num_points]
 
 # Time the pairwise distance + argmax
 start = time.time()
-dists = pairwise_distances(subset, metric='euclidean')
+dists = pairwise_distances(subset, subset, metric='euclidean')
 flat_index = np.argmax(dists)
 i, j = np.unravel_index(flat_index, dists.shape)
 max_dist = dists[i, j]
