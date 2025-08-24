@@ -30,14 +30,14 @@ train_labels = read_labels('train-labels-idx1-ubyte', 60000)
 test_images = read_images('t10k-images-idx3-ubyte', 10000)
 test_labels = read_labels('t10k-labels-idx1-ubyte', 10000)
 
+start = time.time()
+
 # Truncate test set if requested
 test_images = test_images[:num_test]
 test_labels = test_labels[:num_test]
 
 # Build and evaluate KNN model
 model = KNeighborsClassifier(n_neighbors=1, algorithm='brute', n_jobs=-1)
-
-start = time.time()
 model.fit(train_images, train_labels)
 predicted = model.predict(test_images)
 elapsed = time.time() - start
